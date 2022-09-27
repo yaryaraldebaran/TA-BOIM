@@ -36,7 +36,7 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 	
 	
 	public void tambahDataRincianBiaya() {
-		
+		this.btnHome.click();
 		this.btnRincianBiaya.click();
 		this.btnTambahRincianBiaya.click();
 		this.nama.sendKeys("Pemrograman bahasa sunda");
