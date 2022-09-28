@@ -1,12 +1,22 @@
 package cucumber.framework.page.jcadmin;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.time.Duration;
+
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import cucumber.framework.connection.DriverSingleton;
 import cucumber.framework.constant.Constants;
+import cucumber.framework.utils.Utils;
 
 public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 	private WebDriver driver;
@@ -33,40 +43,66 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 	private WebElement diskon;
 	@FindBy(name = "keunggulan1")
 	private WebElement keunggulan1;
+	@FindBy(name = "keunggulan2")
+	private WebElement keunggulan2;
+	@FindBy(name = "keunggulan3")
+	private WebElement keunggulan3;
+	@FindBy(name = "keunggulan4")
+	private WebElement keunggulan4;
+	@FindBy(id ="exampleFormControlSelect9")
+	private WebElement optPublish;
+	@FindBy(name ="mysubmit")
+	private WebElement btnSubmit;
 	
+	//validator data tambah
+	@FindBy(xpath = "//alert[@class='alert alert-success']")
+	private WebElement alertSuccessTambah;
 	
-	public void tambahDataRincianBiaya() {
+	public void goToHome() {
 		this.btnHome.click();
+	}
+	public void goToRincianBiaya() {
 		this.btnRincianBiaya.click();
-		this.btnTambahRincianBiaya.click();
-		this.nama.sendKeys("Pemrograman bahasa sunda");
+	}
+	public void tambahDataRincianBiayaPublish(String status) {
+
+		this.nama.sendKeys("Pemrograman Testing dari cucumber"+status);
 		this.harga.sendKeys("200000");
 		this.diskon.sendKeys("20");
 		this.keunggulan1.sendKeys("bisa sampai mahir");
+		this.keunggulan2.sendKeys("keunggulan keempat");
+		this.keunggulan3.sendKeys("keunggulan ketiga");
+		this.keunggulan4.sendKeys("keunggulan");
+		Select selColor = new Select(this.optPublish);
+		selColor.selectByVisibleText(status);
+		
 	}
-//	driver.get("https://dev.ptdika.com/web_jc_v2/index.php/admin");
-//    driver.findElement(By.linkText("Home")).click();
-//    driver.findElement(By.linkText("Rincian Biaya")).click();
-//    driver.findElement(By.linkText("Tambah")).click();
-//    driver.findElement(By.id("nama")).click();
-//    driver.findElement(By.id("nama")).clear();
-//    driver.findElement(By.id("nama")).sendKeys("Pemrograman Bahasa Lingua Franca");
-//    driver.findElement(By.id("harga")).click();
-//    driver.findElement(By.id("harga")).clear();
-//    driver.findElement(By.id("harga")).sendKeys("500000");
-//    driver.findElement(By.id("diskonid")).click();
-//    driver.findElement(By.id("diskonid")).clear();
-//    driver.findElement(By.id("diskonid")).sendKeys("19");
-//    driver.findElement(By.id("diskonid")).clear();
-//    driver.findElement(By.id("diskonid")).sendKeys("18");
-//    driver.findElement(By.name("keunggulan1")).click();
-//    driver.findElement(By.name("keunggulan1")).clear();
-//    driver.findElement(By.name("keunggulan1")).sendKeys("Bisa Sampai Mahir");
-//    driver.findElement(By.id("exampleFormControlSelect9")).click();
-//    new Select(driver.findElement(By.id("exampleFormControlSelect9"))).selectByVisibleText("InActive");
-//    driver.findElement(By.xpath("//option[@value='0']")).click();
-//    driver.findElement(By.name("mysubmit")).click();
-//    driver.findElement(By.xpath("//form[@id='frmregister']/alert")).click();
-	
-	
+	public void userTambahDataValid() {
+		
+		
+	}
+	public void goToTambahRB() {
+		this.btnTambahRincianBiaya.click();
+	}
+	public void clickSimpan() {
+		//scroll + click simpan
+		Utils.delay(2, strDelay);
+		try {
+			Robot rbt = new Robot();
+			rbt.keyPress(KeyEvent.VK_TAB);
+			rbt.keyRelease(KeyEvent.VK_TAB);
+			rbt.keyPress(KeyEvent.VK_ENTER);
+			rbt.keyRelease(KeyEvent.VK_ENTER);
+		} catch (AWTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Utils.delay(4, strDelay);
+	}
+	public String getTxtSuccess() {
+		//"Data berhasil di tambah"
+		return new WebDriverWait(driver, Duration.ofSeconds(15))
+				.until(ExpectedConditions.visibilityOf(alertSuccessTambah)).getText();
+	}
+		
 }

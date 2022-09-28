@@ -1,5 +1,8 @@
 package cucumber.framework.runner.jcadmin;
 
+import static org.testng.Assert.assertTrue;
+
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 import com.relevantcodes.extentreports.ExtentTest;
@@ -11,6 +14,7 @@ import cucumber.framework.page.jcadmin.JCAdminRincianBiayaPage;
 import cucumber.framework.runner.hrms.sceneoutlinefix.SceneOutlineHooks;
 import cucumber.framework.utils.Utils;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -28,26 +32,31 @@ public class JCTambahRincianBiayaImpl {
 		
 	}
 	
-	@When("User go to home")
-	public void user_go_to_home() {
-		Utils.delay(2, strDelay); 
-		JCAdminRB.tambahDataRincianBiaya();
-	    System.out.println("ini cucumber boim");
+	@Given("Admin login dan membuka halaman rincian biaya")
+	public void admin_login_dan_membuka_halaman_rincian_biaya() {
+	    JCAdminRB.goToHome();
+	    JCAdminRB.goToRincianBiaya();
 	}
 
-	@And("User click rincian biaya button")
-	public void user_click_rincian_biaya_button() {
-		System.out.println("ini when kedua");
+	@When("Admin klik tombol tambah")
+	public void admin_klik_tombol_tambah() {
+	    JCAdminRB.goToTambahRB();
 	}
 
-	@And("User enter username, password, and email invalid")
-	public void user_enter_username_password_and_email_invalid() {
-	    System.out.println("ini and kedua");
+	@When("^Admin mengisi form dengan publish (.*)$")
+	public void admin_mengisi_form_dengan_publish_active(String stat) {
+		JCAdminRB.tambahDataRincianBiayaPublish(stat);
 	}
 
-	@Then("User login valid")
-	public void user_login_valid() {
-	    System.out.println("ini then");
+	@When("Admin menekan tombol simpan")
+	public void admin_menekan_tombol_simpan() {
+	    JCAdminRB.clickSimpan();
+	}
+
+	@Then("Admin menambah rincian biaya active valid")
+	public void admin_menambah_rincian_biaya_active_valid() {
+	    assertTrue(JCAdminRB.getTxtSuccess().contains("berhasil"));
+		
 	}
 
 }
