@@ -23,9 +23,9 @@ import io.cucumber.java.Scenario;
 public class JCAdminHooks {
 	public static WebDriver driver;
 	public static ExtentTest extentTest;
-	public static ExtentReports reports = new ExtentReports("target/hrms/extentreport/hrms-scene-login-outline-xr.html");
+	public static ExtentReports reports = new ExtentReports("target/jcadmin/extentreport/jcadmin-rincian-biaya.html");
 	private static JCAdminTesting[] tests = JCAdminTesting.values();
-	private static final int[] DATA_OUTLINE = {6,6,1,1};
+	private static final int[] DATA_OUTLINE = {1,1,1,1,1};
 	private String testReport = "";
 	
 	@Before

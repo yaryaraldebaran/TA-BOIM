@@ -9,7 +9,7 @@ Feature: Rincian Biaya
   Then Admin mengedit nama program
   Examples:
   |nama program|
-  |edit nama program cucumber|
+  |Pemrograman cucumber|
   
  Scenario: Mengedit harga awal di data pertama
   When Admin mengedit harga awal dengan <harga awal>
@@ -18,3 +18,11 @@ Feature: Rincian Biaya
  Examples:
  |harga awal|
  |50000|
+ 
+  Scenario: Mengedit diskon di data pertama
+  When Admin mengedit diskon dengan <diskon>
+  And Admin menekan tombol simpan edit diskon
+  Then Admin mengedit diskon
+  Examples:
+  |diskon|
+  |30|

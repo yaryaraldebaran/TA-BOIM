@@ -67,6 +67,7 @@ public class JCEditRincianBiayaImpl {
 	public void admin_mengedit_harga_awal_dengan_harga_awal(String hargaSekarang) {
 	    // edit harga awal 
 		JCAdminRB.editHargaAwal(hargaSekarang);
+		extentTest.log(LogStatus.PASS, "Admin mengubah nama program menjadi "+hargaSekarang);
 	}
 
 	@And("Admin menekan tombol simpan edit harga awal")
@@ -84,5 +85,28 @@ public class JCEditRincianBiayaImpl {
 	    extentTest.log(LogStatus.PASS, "Admin telah mengedit harga awal");
 	}
 	//INI AKHIR EDIT HARGA NORMAL
+	
+	//INI AWAL EDIT DISKON 
+	
+	@When("^Admin mengedit diskon dengan (.*)$")
+	public void admin_mengedit_diskon_dengan_diskon(String diskonBaru) {
+		JCAdminRB.editDiskon(diskonBaru);
+		extentTest.log(LogStatus.PASS, "Admin telah mengedit diskon menjadi "+diskonBaru);
+	}
+
+	@And("Admin menekan tombol simpan edit diskon")
+	public void admin_menekan_tombol_simpan_edit_diskon() {
+		JCAdminRB.simpanEdit();
+		extentTest.log(LogStatus.PASS, "Admin menekan tombol simpan edit diskon");
+	}
+
+	@Then("Admin mengedit diskon")
+	public void admin_mengedit_diskon() {
+		System.out.println("ini validator ");
+		extentTest.log(LogStatus.PASS, "Admin telah mengedit diskon");
+	}
+	
+	//INI AKHIR EDIT DISKON
+	
 
 }

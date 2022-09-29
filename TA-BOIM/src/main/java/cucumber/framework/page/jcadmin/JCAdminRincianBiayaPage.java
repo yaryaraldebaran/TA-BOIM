@@ -109,6 +109,14 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 		Utils.delay(3, strDelay);
 		Utils.fullScroll(driver);
 	}
+	public void editDiskon(String diskonBaru) {
+		this.diskon.click();
+		Utils.delay(2, strDelay);
+		clearField();
+		this.diskon.sendKeys(diskonBaru);
+		Utils.delay(3, strDelay);
+		Utils.fullScroll(this.driver);
+	}
 	public void editClickDataPertama() {
 		this.editPertama.click();
 	}
