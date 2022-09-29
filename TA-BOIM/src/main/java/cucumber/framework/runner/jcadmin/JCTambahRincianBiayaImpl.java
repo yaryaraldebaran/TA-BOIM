@@ -6,6 +6,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 
 import cucumber.framework.constant.Constants;
 import cucumber.framework.page.hrms.LoginPage;
@@ -29,34 +30,44 @@ public class JCTambahRincianBiayaImpl {
 		extentTest = JCAdminHooks.extentTest;
 		driver.get(Constants.URL_JCADMIN_LOGIN);
 		JCAdminRB = new JCAdminRincianBiayaPage();
-		
 	}
 	
 	@Given("Admin login dan membuka halaman rincian biaya tambah")
 	public void admin_login_dan_membuka_halaman_rincian_biaya() {
 	    JCAdminRB.goToHome();
 	    JCAdminRB.goToRincianBiaya();
+	    extentTest.log(LogStatus.PASS, "admin login dan membuka halaman rincian biaya");
 	}
 
 	@When("Admin klik tombol tambah")
 	public void admin_klik_tombol_tambah() {
 	    JCAdminRB.goToTambahRB();
+	    extentTest.log(LogStatus.PASS, "Admin klik tombol tambah");
 	}
 
-	@When("^Admin mengisi form tambah dengan publish (.*)$")
+	@And("^Admin mengisi form tambah dengan publish (.*)$")
 	public void admin_mengisi_form_dengan_publish_active(String stat) {
 		JCAdminRB.tambahDataRincianBiayaPublish(stat);
+		extentTest.log(LogStatus.PASS, "Admin mengisi form tambah dengan publish "+stat);
 	}
 
-	@When("Admin menekan tombol simpan tambah")
+	@And("Admin menekan tombol simpan tambah")
 	public void admin_menekan_tombol_simpan() {
-	    JCAdminRB.clickSimpan();
+//	    JCAdminRB.clickSimpan();
+		JCAdminRB.simpanTambah();
+		extentTest.log(LogStatus.PASS, "Admin menekan tombol simpan tambah");
 	}
 
 	@Then("Admin menambah rincian biaya active valid")
 	public void admin_menambah_rincian_biaya_active_valid() {
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	    assertTrue(JCAdminRB.getTxtSuccess().contains("berhasil"));
-		
+	    extentTest.log(LogStatus.PASS, "Admin menambah rincian biaya active valid");
 	}
 
 }

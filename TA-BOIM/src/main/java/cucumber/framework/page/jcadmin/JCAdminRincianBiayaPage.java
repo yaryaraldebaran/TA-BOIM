@@ -51,13 +51,17 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 	private WebElement keunggulan4;
 	@FindBy(id ="exampleFormControlSelect9")
 	private WebElement optPublish;
-	@FindBy(xpath ="/html[1]/body[1]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/form[1]/div[3]/input[1]")
-	private WebElement btnSubmit;
+	@FindBy(xpath ="//input[@name='mysubmit']")
+	private WebElement btnSubmitAdd;
 	@FindBy(xpath ="//tbody/tr[1]/td[11]/a[1]/i[1]")
 	private WebElement editPertama;
 	
+	//edit form elemen
+	@FindBy(xpath ="//input[@name='mysubmit']")
+	private WebElement btnSubmitEdit;
 	
 	//validator data tambah
+	//pake webdriverwait
 	@FindBy(xpath = "//alert[@class='alert alert-success']")
 	private WebElement alertSuccessTambah;
 	//tanya pak paul
@@ -84,32 +88,31 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 		this.keunggulan4.sendKeys("keunggulan");
 		Select selPublish = new Select(this.optPublish);
 		selPublish.selectByVisibleText(status);
+		Utils.delay(2, strDelay);
 		Utils.fullScroll(this.driver);
-		Utils.delay(3, "y");
-		this.btnSubmit.click();
-		Utils.delay(4, "y");
-		
 	}
 	
 	// MENGEDIT DATA
 	public void editNamaProgram(String namaProgram) {
 		this.nama.click();
+		Utils.delay(3, strDelay);
 		clearField();
+		Utils.delay(3, strDelay);
 		this.nama.sendKeys(namaProgram);
-		Utils.fullScroll(this.driver);
-		this.btnSubmit.clear();
+		Utils.fullScroll(driver);
 	}
 	public void editHargaAwal(String hargaAwal) {
 		this.harga.click();
+		Utils.delay(2, strDelay);
 		clearField();
 		this.harga.sendKeys(hargaAwal);
-		Utils.delay(3, "y");
-		Utils.fullScroll(this.driver);
-		this.btnSubmit.clear();
+		Utils.delay(3, strDelay);
+		Utils.fullScroll(driver);
 	}
 	public void editClickDataPertama() {
 		this.editPertama.click();
 	}
+	
 	public void goToTambahRB() {
 		this.btnTambahRincianBiaya.click();
 	}
@@ -120,6 +123,14 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 	}
 	
 	//UTILITAS
+	public void simpanTambah() {
+		Utils.delay(2, strDelay);
+		this.btnSubmitAdd.click();
+	}
+	public void simpanEdit() {
+		Utils.delay(1, strDelay);
+		this.btnSubmitEdit.click();
+	}
 	public void clickSimpan() {
 		//scroll + click simpan
 		Utils.delay(2, strDelay);
@@ -134,6 +145,10 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 			e.printStackTrace();
 		}
 		Utils.delay(4, strDelay);
+	}
+	public String driverWaitTxt(WebDriver driver, int delays, WebElement element) {
+		return new WebDriverWait(driver, Duration.ofSeconds(delays))
+				.until(ExpectedConditions.visibilityOf(element)).getText();
 	}
 	public void clearField() {
 		try {

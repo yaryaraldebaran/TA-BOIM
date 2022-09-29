@@ -12,7 +12,7 @@ public class Constants {
 	public static final String URL = "https://opensource-demo.orangehrmlive.com";
 	public static final String URL_DEMO_QA = "https://demoqa.com/elements";
 	public static final String URL_NOPC = "https://admin-demo.nopcommerce.com/";
-	public static final String GLOB_PARAM_DELAY = "n";
+	public static final String GLOB_PARAM_DELAY = "y";
 	
 	// PAGE JC ADMIN
 	public static final String URL_JCADMIN_LOGIN="https://dev.ptdika.com/web_jc_v2/admin/login";
