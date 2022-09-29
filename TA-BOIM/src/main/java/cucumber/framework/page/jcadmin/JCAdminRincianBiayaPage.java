@@ -51,12 +51,20 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 	private WebElement keunggulan4;
 	@FindBy(id ="exampleFormControlSelect9")
 	private WebElement optPublish;
-	@FindBy(name ="mysubmit")
+	@FindBy(xpath ="/html[1]/body[1]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/form[1]/div[3]/input[1]")
 	private WebElement btnSubmit;
+	@FindBy(xpath ="//tbody/tr[1]/td[11]/a[1]/i[1]")
+	private WebElement editPertama;
+	
 	
 	//validator data tambah
 	@FindBy(xpath = "//alert[@class='alert alert-success']")
 	private WebElement alertSuccessTambah;
+	//tanya pak paul
+	@FindBy(xpath = "")
+	private WebElement publishBefore;
+	@FindBy(xpath = "")
+	private WebElement publishAfter;
 	
 	public void goToHome() {
 		this.btnHome.click();
@@ -64,6 +72,7 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 	public void goToRincianBiaya() {
 		this.btnRincianBiaya.click();
 	}
+	//MENAMBAH DATA 
 	public void tambahDataRincianBiayaPublish(String status) {
 
 		this.nama.sendKeys("Pemrograman Testing dari cucumber"+status);
@@ -73,17 +82,44 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 		this.keunggulan2.sendKeys("keunggulan keempat");
 		this.keunggulan3.sendKeys("keunggulan ketiga");
 		this.keunggulan4.sendKeys("keunggulan");
-		Select selColor = new Select(this.optPublish);
-		selColor.selectByVisibleText(status);
+		Select selPublish = new Select(this.optPublish);
+		selPublish.selectByVisibleText(status);
+		Utils.fullScroll(this.driver);
+		Utils.delay(3, "y");
+		this.btnSubmit.click();
+		Utils.delay(4, "y");
 		
 	}
-	public void userTambahDataValid() {
-		
-		
+	
+	// MENGEDIT DATA
+	public void editNamaProgram(String namaProgram) {
+		this.nama.click();
+		clearField();
+		this.nama.sendKeys(namaProgram);
+		Utils.fullScroll(this.driver);
+		this.btnSubmit.clear();
+	}
+	public void editHargaAwal(String hargaAwal) {
+		this.harga.click();
+		clearField();
+		this.harga.sendKeys(hargaAwal);
+		Utils.delay(3, "y");
+		Utils.fullScroll(this.driver);
+		this.btnSubmit.clear();
+	}
+	public void editClickDataPertama() {
+		this.editPertama.click();
 	}
 	public void goToTambahRB() {
 		this.btnTambahRincianBiaya.click();
 	}
+	public String getTxtSuccess() {
+		//"Data berhasil di tambah"
+		return new WebDriverWait(driver, Duration.ofSeconds(15))
+				.until(ExpectedConditions.visibilityOf(alertSuccessTambah)).getText();
+	}
+	
+	//UTILITAS
 	public void clickSimpan() {
 		//scroll + click simpan
 		Utils.delay(2, strDelay);
@@ -99,10 +135,18 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 		}
 		Utils.delay(4, strDelay);
 	}
-	public String getTxtSuccess() {
-		//"Data berhasil di tambah"
-		return new WebDriverWait(driver, Duration.ofSeconds(15))
-				.until(ExpectedConditions.visibilityOf(alertSuccessTambah)).getText();
+	public void clearField() {
+		try {
+			Robot rbtclr = new Robot();
+			rbtclr.keyPress(KeyEvent.VK_CONTROL);
+			rbtclr.keyPress(KeyEvent.VK_A);
+			rbtclr.keyRelease(KeyEvent.VK_CONTROL);
+			rbtclr.keyRelease(KeyEvent.VK_A);
+			rbtclr.keyPress(KeyEvent.VK_BACK_SPACE);
+			rbtclr.keyRelease(KeyEvent.VK_BACK_SPACE);
+		} catch (AWTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-		
 }

@@ -32,7 +32,7 @@ public class JCTambahRincianBiayaImpl {
 		
 	}
 	
-	@Given("Admin login dan membuka halaman rincian biaya")
+	@Given("Admin login dan membuka halaman rincian biaya tambah")
 	public void admin_login_dan_membuka_halaman_rincian_biaya() {
 	    JCAdminRB.goToHome();
 	    JCAdminRB.goToRincianBiaya();
@@ -43,12 +43,12 @@ public class JCTambahRincianBiayaImpl {
 	    JCAdminRB.goToTambahRB();
 	}
 
-	@When("^Admin mengisi form dengan publish (.*)$")
+	@When("^Admin mengisi form tambah dengan publish (.*)$")
 	public void admin_mengisi_form_dengan_publish_active(String stat) {
 		JCAdminRB.tambahDataRincianBiayaPublish(stat);
 	}
 
-	@When("Admin menekan tombol simpan")
+	@When("Admin menekan tombol simpan tambah")
 	public void admin_menekan_tombol_simpan() {
 	    JCAdminRB.clickSimpan();
 	}
