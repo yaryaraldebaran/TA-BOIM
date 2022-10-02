@@ -11,7 +11,6 @@ import com.relevantcodes.extentreports.LogStatus;
 
 import cucumber.framework.connection.DriverSingleton;
 import cucumber.framework.constant.Constants;
-import cucumber.framework.scenariotest.hrms.HRMSSceneOutlineFix;
 import cucumber.framework.scenariotest.jcadmin.total.JCAdminTesting;
 import cucumber.framework.utils.Utils;
 import io.cucumber.java.After;
@@ -25,7 +24,7 @@ public class JCAdminHooks {
 	public static ExtentTest extentTest;
 	public static ExtentReports reports = new ExtentReports("target/jcadmin/extentreport/jcadmin-rincian-biaya.html");
 	private static JCAdminTesting[] tests = JCAdminTesting.values();
-	private static final int[] DATA_OUTLINE = {1,1,1,1,1};
+	private static final int[] DATA_OUTLINE = {1,1,1,1,1,1};
 	private String testReport = "";
 	
 	@Before

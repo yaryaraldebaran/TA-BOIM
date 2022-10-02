@@ -6,6 +6,7 @@ public enum JCAdminTesting {
 	T3("Mengedit nama program di data pertama rincian biaya baru"),
 	T4("Mengedit harga normal di data pertama rincian biaya baru"),
 	T5("Mengedit diskon di data pertama rincian biaya baru"),
+	T6("Mengedit keunggulan1 di data pertama rincian biaya baru"),
 	;
 	
 	private String testName;

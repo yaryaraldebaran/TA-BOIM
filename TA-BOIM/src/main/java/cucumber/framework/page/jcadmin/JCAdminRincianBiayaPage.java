@@ -4,8 +4,8 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
+import java.time.LocalDate;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,6 +27,9 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 		PageFactory.initElements(driver, this);
 		super.LoginPage("ucen1315@gmail.com", "a");
 	}
+	//tanggal untuk record trail
+	String tanggalBulan = Integer.toString(LocalDate.now().getDayOfMonth())+"_"+Integer.toString(LocalDate.now().getMonthValue());
+	
 	@FindBy(linkText = "Home")
 	private WebElement btnHome;
 	@FindBy(linkText = "Rincian Biaya")
@@ -59,7 +62,7 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 	//edit form elemen
 	@FindBy(xpath ="//input[@name='mysubmit']")
 	private WebElement btnSubmitEdit;
-	
+	String namaBaru = "Testing dari cucumber"+tanggalBulan;
 	//validator data tambah
 	//pake webdriverwait
 	@FindBy(xpath = "//alert[@class='alert alert-success']")
@@ -69,6 +72,14 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 	private WebElement publishBefore;
 	@FindBy(xpath = "")
 	private WebElement publishAfter;
+	@FindBy(xpath="/html[1]/body[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[1]")
+	private WebElement vldEditNama;
+	@FindBy(xpath="//td[normalize-space()='Pemrograman cucumber']")
+	private WebElement vldEditHarga;
+	@FindBy(xpath="//alert[@class='alert alert-success']")
+	private WebElement vldEditDiskon;
+	@FindBy(xpath="//alert[@class='alert alert-success']")
+	private WebElement vldEditKeunggulan1;
 	
 	public void goToHome() {
 		this.btnHome.click();
@@ -78,8 +89,8 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 	}
 	//MENAMBAH DATA 
 	public void tambahDataRincianBiayaPublish(String status) {
-
-		this.nama.sendKeys("Pemrograman Testing dari cucumber"+status);
+		
+		this.nama.sendKeys(namaBaru+" "+status);
 		this.harga.sendKeys("200000");
 		this.diskon.sendKeys("20");
 		this.keunggulan1.sendKeys("bisa sampai mahir");
@@ -91,9 +102,14 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 		Utils.delay(2, strDelay);
 		Utils.fullScroll(this.driver);
 	}
+
+	
+	
+	
 	
 	// MENGEDIT DATA
 	public void editNamaProgram(String namaProgram) {
+		
 		this.nama.click();
 		Utils.delay(3, strDelay);
 		clearField();
@@ -117,6 +133,14 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 		Utils.delay(3, strDelay);
 		Utils.fullScroll(this.driver);
 	}
+	public void editKeunggulan1(String keunggulan1Baru) {
+		this.keunggulan1.click();
+		Utils.delay(2, strDelay);
+		clearField();
+		this.keunggulan1.sendKeys(keunggulan1Baru);
+		Utils.delay(3, strDelay);
+		Utils.fullScroll(this.driver);
+	}
 	public void editClickDataPertama() {
 		this.editPertama.click();
 	}
@@ -128,6 +152,16 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 		//"Data berhasil di tambah"
 		return new WebDriverWait(driver, Duration.ofSeconds(15))
 				.until(ExpectedConditions.visibilityOf(alertSuccessTambah)).getText();
+	}
+	public String getEditNameSuccess() {
+		//"Data berhasil di tambah"
+		return new WebDriverWait(driver, Duration.ofSeconds(15))
+				.until(ExpectedConditions.visibilityOf(vldEditNama)).getText();
+	}
+	public Boolean compEditNama() {
+		//ambil output
+		//compare output dengan nama baru
+		return getEditNameSuccess().contains("baru");
 	}
 	
 	//UTILITAS
@@ -172,4 +206,5 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 			e.printStackTrace();
 		}
 	}
+
 }
