@@ -89,15 +89,20 @@ public class JCAdminBlogPage  extends JCAdminLoginPage{
 	/*
 	 * EDIT BODY PREVIEW
 	 */
-	public void editBody() {
+	public void editBodyPreview() {
+		Utils.setengahScroll("400");
 		this.bodyPreview.click();
 		Utils.delay(3, strDelay);
 		clearField();
 		Utils.delay(1, strDelay);
 		this.bodyPreview.sendKeys("ini adalah body preview blog pertama cucumer");
+		Utils.delay(3, strDelay);
 	}
 	public void klikSimpanEditBody() {
+//		Utils.setengahScroll("2000");
+		Utils.scrollFullMouse(200);
 		this.btnEditSubmit.click();
+		Utils.delay(2, strDelay);
 	}
 	public void clearField() {
 		try {

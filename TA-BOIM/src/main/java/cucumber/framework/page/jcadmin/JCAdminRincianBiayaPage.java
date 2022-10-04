@@ -38,7 +38,8 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 	private WebElement btnRincianBiaya;
 	@FindBy(linkText = "Tambah")
 	private WebElement btnTambahRincianBiaya;
-	
+	@FindBy(xpath ="//select[@name='st']")
+	private WebElement optLihat;
 	//form tambah biaya
 	@FindBy(id = "nama")
 	private WebElement nama;
@@ -92,13 +93,62 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 	private WebElement vldEditKeunggulan4;
 	@FindBy(xpath="/html[1]/body[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[9]")
 	private WebElement vldEditKeunggulan5;
-	
+	@FindBy(xpath="/html[1]/body[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]")
+	private WebElement hargaN1;
+	@FindBy(xpath="/html[1]/body[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]")
+	private WebElement hargaN2;
+	@FindBy(xpath="/html[1]/body[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[3]/td[2]")
+	private WebElement hargaN3;
+	////////////////////////////
+	@FindBy(xpath="")
+	private WebElement nama1;
+	@FindBy(xpath="")
+	private WebElement nama2;
+	@FindBy(xpath="")
+	private WebElement nama3;
+////////////////////////////
+	@FindBy(xpath="/html[1]/body[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[4]")
+	private WebElement hargaD1;
+	@FindBy(xpath="/html[1]/body[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[2]/td[4]")
+	private WebElement hargaD2;
+	@FindBy(xpath="/html[1]/body[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[3]/td[4]")
+	private WebElement hargaD3;
+////////////////////////////
+	@FindBy(xpath="/html[1]/body[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[3]")
+	private WebElement diskon1;
+	@FindBy(xpath="/html[1]/body[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[2]/td[3]")
+	private WebElement diskon2;
+	@FindBy(xpath="/html[1]/body[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[3]/td[3]")
+	private WebElement diskon3;
 	public void goToHome() {
 		this.btnHome.click();
 	}
 	public void goToRincianBiaya() {
 		this.btnRincianBiaya.click();
 	}
+	//MELIHAT DATA BERDASARKAN NAMA PROGRAM
+	public void lihatNamaProgram() {
+		Select selLihat = new Select(this.optLihat);
+		selLihat.selectByVisibleText("Nama Program");
+	}
+	//MELIHAT DATA BERDASARKAN HARGA NORMAL
+	public void lihatHargaNormal() {
+		Select selLihat = new Select(this.optLihat);
+		selLihat.selectByVisibleText("Harga-Normal");
+	}
+	
+	
+	
+	public void lihatDiskon() {
+		Select selLihat = new Select(this.optLihat);
+		selLihat.selectByVisibleText("Diskon %");
+	}
+	public void lihatHargaDiskon() {
+		Select selLihat = new Select(this.optLihat);
+		selLihat.selectByVisibleText("Harga-Diskon");
+	}
+	
+	
 	//MENAMBAH DATA 
 	public void tambahDataRincianBiayaPublish(String status) {
 		this.nama.sendKeys(namaTambah+" "+status);
@@ -270,6 +320,53 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 	}
 	public boolean compEditKeunggulan5(String keunggulan5Baru) {
 		return getEditKeunggulan5Success().contains(keunggulan5Baru);
+	}
+	
+	//VALIDATOR LIHAT
+	public String getHarga1() {
+		//"Data berhasil di tambah"
+		return new WebDriverWait(driver, Duration.ofSeconds(15))
+				.until(ExpectedConditions.visibilityOf(hargaN1)).getText();
+	}
+	public String getHarga2() {
+		//"Data berhasil di tambah"
+		return new WebDriverWait(driver, Duration.ofSeconds(15))
+				.until(ExpectedConditions.visibilityOf(hargaN2)).getText();
+	}
+	public String getHarga3() {
+		//"Data berhasil di tambah"
+		return new WebDriverWait(driver, Duration.ofSeconds(15))
+				.until(ExpectedConditions.visibilityOf(hargaN3)).getText();
+	}
+	public String getDiskon1() {
+		//"Data berhasil di tambah"
+		return new WebDriverWait(driver, Duration.ofSeconds(15))
+				.until(ExpectedConditions.visibilityOf(diskon1)).getText();
+	}
+	public String getDiskon2() {
+		//"Data berhasil di tambah"
+		return new WebDriverWait(driver, Duration.ofSeconds(15))
+				.until(ExpectedConditions.visibilityOf(diskon2)).getText();
+	}
+	public String getDiskon3() {
+		//"Data berhasil di tambah"
+		return new WebDriverWait(driver, Duration.ofSeconds(15))
+				.until(ExpectedConditions.visibilityOf(diskon3)).getText();
+	}
+	public String getHargaDiskon1() {
+		//"Data berhasil di tambah"
+		return new WebDriverWait(driver, Duration.ofSeconds(15))
+				.until(ExpectedConditions.visibilityOf(hargaD1)).getText();
+	}
+	public String getHargaDiskon2() {
+		//"Data berhasil di tambah"
+		return new WebDriverWait(driver, Duration.ofSeconds(15))
+				.until(ExpectedConditions.visibilityOf(hargaD2)).getText();
+	}
+	public String getHargaDiskon3() {
+		//"Data berhasil di tambah"
+		return new WebDriverWait(driver, Duration.ofSeconds(15))
+				.until(ExpectedConditions.visibilityOf(hargaD3)).getText();
 	}
 	
 	

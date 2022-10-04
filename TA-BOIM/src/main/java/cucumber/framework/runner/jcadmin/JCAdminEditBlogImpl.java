@@ -65,14 +65,13 @@ public class JCAdminEditBlogImpl {
 	 */
 	@When("Admin edit body preview blog")
 	public void admin_edit_body_preview_blog() {
-		Utils.setengahScroll();
-	    JCAdminBlog.editBody();
+		System.out.println("ini dari edit body");
+	    JCAdminBlog.editBodyPreview();
 	}
 
 	@And("Admin klik simpan edit body preview blog baru")
 	public void admin_klik_simpan_edit_body_preview_blog_baru() {
-		Utils.delay(2, strDelay);
-		Utils.fullScroll();
+//		Utils.fullScroll();
 	    JCAdminBlog.klikSimpanEditBody();
 	}
 
