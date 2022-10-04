@@ -10,12 +10,10 @@ public class RunnerKolektif {
 		try {
 			Main.main(new String[]
 			{
-				"-g","cucumber.framework.runner.hrms.sceneoutlinefix",
-				"classpath:hrms/sceneoutlinefix",
+				"-g","cucumber.framework.runner.jcadmin",
+				"classpath:jcadmin",
 				"-p","pretty",
 				"-p","html:target/hrms/htmlreport/LoginRunnerOutline.html",
-				"-p","json:target/hrms/jsonreport/LoginRunnerOutline.json",
-				"-p","junit:target/hrms/junitreport/LoginRunnerOutline.xml",
 				"-m"
 			});
 		}catch(Exception e)

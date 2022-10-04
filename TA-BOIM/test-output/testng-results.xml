@@ -1,91 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-10-02T23:24:01 ICT" name="Default suite" finished-at="2022-10-02T23:25:01 ICT" duration-ms="59968">
+  <suite started-at="2022-10-04T05:01:53 ICT" name="Default suite" finished-at="2022-10-04T05:02:15 ICT" duration-ms="22015">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:cucumber.framework.runner.jcadmin.JCAdminRunner@1a677343]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2022-10-02T23:24:01 ICT" name="Default test" finished-at="2022-10-02T23:25:01 ICT" duration-ms="59968">
+    <test started-at="2022-10-04T05:01:53 ICT" name="Default test" finished-at="2022-10-04T05:02:15 ICT" duration-ms="22015">
       <class name="cucumber.framework.runner.jcadmin.JCAdminRunner">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:cucumber.framework.runner.jcadmin.JCAdminRunner@1a677343]" started-at="2022-10-02T23:24:01 ICT" name="setUpClass" finished-at="2022-10-02T23:24:01 ICT" duration-ms="572" status="PASS">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:cucumber.framework.runner.jcadmin.JCAdminRunner@1a677343]" started-at="2022-10-04T05:01:53 ICT" name="setUpClass" finished-at="2022-10-04T05:01:54 ICT" duration-ms="786" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@3dc39459]]>
+                <![CDATA[org.testng.TestRunner@54ccb3]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:cucumber.framework.runner.jcadmin.JCAdminRunner@1a677343]" started-at="2022-10-02T23:24:01 ICT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2022-10-02T23:24:21 ICT" duration-ms="20049" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:cucumber.framework.runner.jcadmin.JCAdminRunner@1a677343]" started-at="2022-10-04T05:01:54 ICT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2022-10-04T05:02:13 ICT" duration-ms="18696" status="FAIL">
           <params>
             <param index="0">
               <value>
-                <![CDATA["Mengedit nama program di data pertama"]]>
+                <![CDATA["Menambah blog baru"]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA["Rincian Biaya"]]>
+                <![CDATA["Blog"]]>
               </value>
             </param>
           </params>
+          <exception class="org.openqa.selenium.InvalidArgumentException">
+            <message>
+              <![CDATA[invalid argument
+  (Session info: chrome=105.0.5195.127)
+Build info: version: '4.4.0', revision: 'e5c75ed026a'
+System info: host: 'DESKTOP-8OTT66F', ip: '192.168.1.122', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.4.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [fc8a961d7c3c198be7166bc9da6aa9fd, clickElement {id=c02773be-ee71-4337-b2d9-5ab55556e2ae}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 105.0.5195.127, chrome: {chromedriverVersion: 105.0.5195.52 (412c95e51883..., userDataDir: C:\Users\NEXSOFT\AppData\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:64087}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:64087/devtoo..., se:cdpVersion: 105.0.5195.127, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on WINDOWS (fc8a961d7c3c198be7166bc9da6aa9fd)] -> xpath: /html[1]/body[1]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/form[1]/div[2]/div[1]/div[1]/div[1]/input[1]]
+Session ID: fc8a961d7c3c198be7166bc9da6aa9fd]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.InvalidArgumentException: invalid argument
+  (Session info: chrome=105.0.5195.127)
+Build info: version: '4.4.0', revision: 'e5c75ed026a'
+System info: host: 'DESKTOP-8OTT66F', ip: '192.168.1.122', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.4.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [fc8a961d7c3c198be7166bc9da6aa9fd, clickElement {id=c02773be-ee71-4337-b2d9-5ab55556e2ae}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 105.0.5195.127, chrome: {chromedriverVersion: 105.0.5195.52 (412c95e51883..., userDataDir: C:\Users\NEXSOFT\AppData\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:64087}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:64087/devtoo..., se:cdpVersion: 105.0.5195.127, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on WINDOWS (fc8a961d7c3c198be7166bc9da6aa9fd)] -> xpath: /html[1]/body[1]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/form[1]/div[2]/div[1]/div[1]/div[1]/input[1]]
+Session ID: fc8a961d7c3c198be7166bc9da6aa9fd
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:547)
+at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:257)
+at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:78)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:52)
+at jdk.proxy2/jdk.proxy2.$Proxy32.click(Unknown Source)
+at cucumber.framework.page.jcadmin.JCAdminBlogPage.clickUpload(JCAdminBlogPage.java:62)
+at cucumber.framework.runner.jcadmin.JCTambahBlogImpl.admin_klik_pilih_gambar(JCTambahBlogImpl.java:42)
+at ✽.Admin klik pilih gambar(file:///C:/Users/NEXSOFT/git/TA-BOIM/TA-BOIM/src/main/resources/jcadmin/005Blog001MenambahBlog.feature:5)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.InvalidArgumentException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:cucumber.framework.runner.jcadmin.JCAdminRunner@1a677343]" started-at="2022-10-02T23:24:21 ICT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2022-10-02T23:24:35 ICT" duration-ms="13820" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA["Mengedit harga awal di data pertama"]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA["Rincian Biaya"]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:cucumber.framework.runner.jcadmin.JCAdminRunner@1a677343]" started-at="2022-10-02T23:24:35 ICT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2022-10-02T23:24:47 ICT" duration-ms="11542" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA["Mengedit diskon di data pertama"]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA["Rincian Biaya"]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:cucumber.framework.runner.jcadmin.JCAdminRunner@1a677343]" started-at="2022-10-02T23:24:47 ICT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2022-10-02T23:24:58 ICT" duration-ms="11640" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA["Mengedit keunggulan1 di data pertama"]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA["Rincian Biaya"]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:cucumber.framework.runner.jcadmin.JCAdminRunner@1a677343]" started-at="2022-10-02T23:24:58 ICT" name="tearDownClass" finished-at="2022-10-02T23:25:01 ICT" duration-ms="2297" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:cucumber.framework.runner.jcadmin.JCAdminRunner@1a677343]" started-at="2022-10-04T05:02:13 ICT" name="tearDownClass" finished-at="2022-10-04T05:02:15 ICT" duration-ms="2461" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->

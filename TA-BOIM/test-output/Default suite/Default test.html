@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>4/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Sun Oct 02 23:24:01 ICT 2022</td>
+<td>Started on:</td><td>Tue Oct 04 05:01:53 ICT 2022</td>
 </tr>
-<tr><td>Total time:</td><td>59 seconds (59968 ms)</td>
+<tr><td>Total time:</td><td>22 seconds (22015 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,8 +67,8 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
-<table width='100%' border='1' class='invocation-passed'>
-<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
 <td><b>Attribute(s)</b></td>
 <td width="30%"><b>Exception</b></td>
@@ -76,24 +76,74 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='cucumber.framework.runner.jcadmin.JCAdminRunner.runScenario()'><b>runScenario</b><br>Test class: cucumber.framework.runner.jcadmin.JCAdminRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Mengedit harga awal di data pertama", "Rincian Biaya"</td>
-<td></td>
-<td>13</td>
-<td>cucumber.framework.runner.jcadmin.JCAdminRunner@1a677343</td></tr>
-<tr>
-<td title='cucumber.framework.runner.jcadmin.JCAdminRunner.runScenario()'><b>runScenario</b><br>Test class: cucumber.framework.runner.jcadmin.JCAdminRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Mengedit keunggulan1 di data pertama", "Rincian Biaya"</td>
-<td></td>
-<td>11</td>
-<td>cucumber.framework.runner.jcadmin.JCAdminRunner@1a677343</td></tr>
-<tr>
-<td title='cucumber.framework.runner.jcadmin.JCAdminRunner.runScenario()'><b>runScenario</b><br>Test class: cucumber.framework.runner.jcadmin.JCAdminRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Mengedit nama program di data pertama", "Rincian Biaya"</td>
-<td></td>
-<td>20</td>
-<td>cucumber.framework.runner.jcadmin.JCAdminRunner@1a677343</td></tr>
-<tr>
-<td title='cucumber.framework.runner.jcadmin.JCAdminRunner.runScenario()'><b>runScenario</b><br>Test class: cucumber.framework.runner.jcadmin.JCAdminRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Mengedit diskon di data pertama", "Rincian Biaya"</td>
-<td></td>
-<td>11</td>
+<td title='cucumber.framework.runner.jcadmin.JCAdminRunner.runScenario()'><b>runScenario</b><br>Test class: cucumber.framework.runner.jcadmin.JCAdminRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Menambah blog baru", "Blog"</td>
+<td><div><pre>org.openqa.selenium.InvalidArgumentException: invalid argument
+  (Session info: chrome=105.0.5195.127)
+Build info: version: &apos;4.4.0&apos;, revision: &apos;e5c75ed026a&apos;
+System info: host: &apos;DESKTOP-8OTT66F&apos;, ip: &apos;192.168.1.122&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.4.1&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [fc8a961d7c3c198be7166bc9da6aa9fd, clickElement {id=c02773be-ee71-4337-b2d9-5ab55556e2ae}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 105.0.5195.127, chrome: {chromedriverVersion: 105.0.5195.52 (412c95e51883..., userDataDir: C:\Users\NEXSOFT\AppData\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:64087}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:64087/devtoo..., se:cdpVersion: 105.0.5195.127, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on WINDOWS (fc8a961d7c3c198be7166bc9da6aa9fd)] -&gt; xpath: /html[1]/body[1]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/form[1]/div[2]/div[1]/div[1]/div[1]/input[1]]
+Session ID: fc8a961d7c3c198be7166bc9da6aa9fd
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:547)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:257)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:78)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:52)
+	at jdk.proxy2/jdk.proxy2.$Proxy32.click(Unknown Source)
+	at cucumber.framework.page.jcadmin.JCAdminBlogPage.clickUpload(JCAdminBlogPage.java:62)
+	at cucumber.framework.runner.jcadmin.JCTambahBlogImpl.admin_klik_pilih_gambar(JCTambahBlogImpl.java:42)
+	at ?.Admin klik pilih gambar(file:///C:/Users/NEXSOFT/git/TA-BOIM/TA-BOIM/src/main/resources/jcadmin/005Blog001MenambahBlog.feature:5)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1393484427", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1393484427'><pre>org.openqa.selenium.InvalidArgumentException: invalid argument
+  (Session info: chrome=105.0.5195.127)
+Build info: version: &apos;4.4.0&apos;, revision: &apos;e5c75ed026a&apos;
+System info: host: &apos;DESKTOP-8OTT66F&apos;, ip: &apos;192.168.1.122&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.4.1&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [fc8a961d7c3c198be7166bc9da6aa9fd, clickElement {id=c02773be-ee71-4337-b2d9-5ab55556e2ae}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 105.0.5195.127, chrome: {chromedriverVersion: 105.0.5195.52 (412c95e51883..., userDataDir: C:\Users\NEXSOFT\AppData\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:64087}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:64087/devtoo..., se:cdpVersion: 105.0.5195.127, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on WINDOWS (fc8a961d7c3c198be7166bc9da6aa9fd)] -&gt; xpath: /html[1]/body[1]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/form[1]/div[2]/div[1]/div[1]/div[1]/input[1]]
+Session ID: fc8a961d7c3c198be7166bc9da6aa9fd
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:547)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:257)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:78)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:52)
+	at jdk.proxy2/jdk.proxy2.$Proxy32.click(Unknown Source)
+	at cucumber.framework.page.jcadmin.JCAdminBlogPage.clickUpload(JCAdminBlogPage.java:62)
+	at cucumber.framework.runner.jcadmin.JCTambahBlogImpl.admin_klik_pilih_gambar(JCTambahBlogImpl.java:42)
+	at ?.Admin klik pilih gambar(file:///C:/Users/NEXSOFT/git/TA-BOIM/TA-BOIM/src/main/resources/jcadmin/005Blog001MenambahBlog.feature:5)
+</pre></div></td>
+<td>18</td>
 <td>cucumber.framework.runner.jcadmin.JCAdminRunner@1a677343</td></tr>
 </table><p>
 </body>

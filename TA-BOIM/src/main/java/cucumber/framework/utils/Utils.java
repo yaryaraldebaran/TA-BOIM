@@ -14,10 +14,14 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
+import cucumber.framework.connection.DriverSingleton;
+
 public class Utils {
 
 	public static int testCount = 0;
 	public static int countOutline = 1;
+	public static WebDriver driver = DriverSingleton.getDriver();
+	
 	
 	public static String getScreenshot(WebDriver driver, String screenshotName) throws IOException {
 		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
@@ -55,9 +59,28 @@ public class Utils {
 			e.printStackTrace();
 		}
 	}
-	public static void fullScroll(WebDriver driver) {
+	public static void fullScroll() {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+	}
+	public static void setengahScroll() {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,1000)","");
+	}
+	public static void clearField() {
+		try {
+			Robot rbtclr = new Robot();
+			rbtclr.keyPress(KeyEvent.VK_CONTROL);
+			rbtclr.keyPress(KeyEvent.VK_A);
+			rbtclr.keyRelease(KeyEvent.VK_CONTROL);
+			rbtclr.keyRelease(KeyEvent.VK_A);
+			delay(1, "y");
+			rbtclr.keyPress(KeyEvent.VK_BACK_SPACE);
+			rbtclr.keyRelease(KeyEvent.VK_BACK_SPACE);
+		} catch (AWTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
