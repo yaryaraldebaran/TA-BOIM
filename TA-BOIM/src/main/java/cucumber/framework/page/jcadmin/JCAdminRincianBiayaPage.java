@@ -63,7 +63,12 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 	private WebElement btnSubmitAdd;
 	@FindBy(xpath ="//tbody/tr[1]/td[11]/a[1]/i[1]")
 	private WebElement editPertama;
+	@FindBy(xpath ="//input[@placeholder='Search']")
+	private WebElement searchField;
+	@FindBy(xpath = "/html[1]/body[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[4]")
+	private WebElement hargaDiskon;
 	
+	//VALIDATOR SEARCH
 	//edit form elemen
 	@FindBy(xpath ="//input[@name='mysubmit']")
 	private WebElement btnSubmitEdit;
@@ -120,6 +125,7 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 	private WebElement diskon2;
 	@FindBy(xpath="/html[1]/body[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[3]/td[3]")
 	private WebElement diskon3;
+////////////////////////////
 	public void goToHome() {
 		this.btnHome.click();
 	}
@@ -130,6 +136,50 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 	public void lihatNamaProgram() {
 		Select selLihat = new Select(this.optLihat);
 		selLihat.selectByVisibleText("Nama Program");
+	}
+	public void searchNamaProgram() {
+		this.searchField.sendKeys("Pemrograman");
+		try {
+			Robot rbt = new Robot();
+			rbt.keyPress(KeyEvent.VK_ENTER);
+			rbt.keyRelease(KeyEvent.VK_ENTER);
+		} catch (AWTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void searchHargaNormal() {
+		this.searchField.sendKeys("50000");
+		try {
+			Robot rbt = new Robot();
+			rbt.keyPress(KeyEvent.VK_ENTER);
+			rbt.keyRelease(KeyEvent.VK_ENTER);
+		} catch (AWTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void searchDiskon() {
+		this.searchField.sendKeys("5");
+		try {
+			Robot rbt = new Robot();
+			rbt.keyPress(KeyEvent.VK_ENTER);
+			rbt.keyRelease(KeyEvent.VK_ENTER);
+		} catch (AWTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void searchHargaDiskon(String hrgDsk) {
+		this.searchField.sendKeys(hrgDsk);
+		try {
+			Robot rbt = new Robot();
+			rbt.keyPress(KeyEvent.VK_ENTER);
+			rbt.keyRelease(KeyEvent.VK_ENTER);
+		} catch (AWTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	//MELIHAT DATA BERDASARKAN HARGA NORMAL
 	public void lihatHargaNormal() {
@@ -249,6 +299,11 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 		//"Data berhasil di tambah"
 		return new WebDriverWait(driver, Duration.ofSeconds(15))
 				.until(ExpectedConditions.visibilityOf(alertSuccessTambah)).getText();
+	}
+	public String getHargaDskon() {
+		//KEUNGGULAN1 BERHASIL DIEDIT
+		return new WebDriverWait(driver, Duration.ofSeconds(15))
+				.until(ExpectedConditions.visibilityOf(hargaDiskon)).getText();
 	}
 	
 	
@@ -418,9 +473,4 @@ public class JCAdminRincianBiayaPage extends JCAdminLoginPage {
 	    String numStr=idFormatter.format(num);
 		return numStr;
 	}
-
-
-
-
-
 }

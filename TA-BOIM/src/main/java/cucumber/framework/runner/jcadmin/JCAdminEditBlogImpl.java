@@ -79,4 +79,23 @@ public class JCAdminEditBlogImpl {
 	public void admin_telah_mengedit_body_preview_blog_baru() {
 	    System.out.println("ini dari then edit body preview");
 	}
+
+	/*
+	 * EDIT PUBLISH BLOG
+	 */
+	@When("Admin edit PUBLISHOPT artikel blog")
+	public void admin_edit_publishopt_artikel_blog() {
+		System.out.println(JCAdminBlog.getOptPub());
+	    JCAdminBlog.editPublish(JCAdminBlog.getOptPub());
+	}
+
+	@When("Admin klik simpan edit publishopt blog pertama")
+	public void admin_klik_simpan_edit_publishopt_blog_pertama() {
+		JCAdminBlog.klikSimpanEditBody();
+	}
+
+	@Then("admin telah mengedit publishopt pada artikel blog baru")
+	public void admin_telah_mengedit_publishopt_artikel_blog_baru() {
+	    System.out.println("test then");
+	}
 }

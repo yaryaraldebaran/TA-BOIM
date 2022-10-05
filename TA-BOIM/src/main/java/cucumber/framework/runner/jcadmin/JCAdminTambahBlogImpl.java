@@ -10,6 +10,7 @@ import com.relevantcodes.extentreports.LogStatus;
 import cucumber.framework.constant.Constants;
 import cucumber.framework.page.jcadmin.JCAdminBlogPage;
 import cucumber.framework.page.jcadmin.JCAdminRincianBiayaPage;
+import cucumber.framework.utils.Utils;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -37,27 +38,24 @@ public class JCAdminTambahBlogImpl {
 	    JCAdminBlog.tekanTambahBlog();
 	}
 
-	@When("Admin klik pilih gambar")
-	public void admin_klik_pilih_gambar() {
-	    JCAdminBlog.clickUpload();
-	}
 
 	@When("Admin mengisi field blog baru")
 	public void admin_mengisi_field_blog_baru() {
 	    JCAdminBlog.tambahBlogBaru();
+	    Utils.delay(4, strDelay);
 	}
 
 	@When("Admin memilih opsi set to home yes")
 	public void admin_memilih_opsi_set_to_home_yes() {
-	    System.out.println("set to home yes");
+		JCAdminBlog.klikSimpanBlog();
 	}
 
 	@Then("admin klik tombol simpan")
 	public void admin_klik_tombol_simpan() {
-		System.out.println("admin klik tombol simpan");
+		assertTrue(JCAdminBlog.getTxtSuccess().contains("berhasil"));
 	}
 	
-
 	
+
 
 }
