@@ -9,6 +9,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.openqa.selenium.WebDriver;
@@ -35,14 +36,17 @@ public class JCAdminBlogPage  extends JCAdminLoginPage
 		super.LoginPage("ucen1315@gmail.com", "a");
 		
 	}
+	String lokasiGambar = "src/main/resources/gambarboim/catit.png"; 
+	File gambar1 = new File(lokasiGambar);
+	String jamMenit = Integer.toString(LocalDateTime.now().getHour())+":"+Integer.toString(LocalDateTime.now().getMinute())+":"+Integer.toString(LocalDateTime.now().getMinute());
 	@FindBy(linkText = "Blog")
 	private WebElement btnBlog;
 	@FindBy (linkText = "Tambah")
 	private WebElement btnTambah;
 	@FindBy(name="uploadedFile")
 	private WebElement uploadField;
-	
-	
+	@FindBy(name = "/html[1]/body[1]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/div[4]/figure[1]/a[1]/img[1]")
+	private WebElement blogPertama;
 	//FIELD TAMBAH BLOG
 	@FindBy(id ="judul")
 	private WebElement judulBlog;
@@ -52,7 +56,9 @@ public class JCAdminBlogPage  extends JCAdminLoginPage
 	private WebElement optSetHome;
 	@FindBy(name ="body_preview")
 	private WebElement fieldBodyPreview;
-	@FindBy(name ="mySubmit")
+	@FindBy(xpath ="/html[1]/body[1]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/form[1]/div[2]/div[1]/div[6]/div[1]/div[1]/div[3]/div[3]")
+	private WebElement contentBlog;
+	@FindBy(xpath ="/html[1]/body[1]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/form[1]/div[3]/input[1]")
 	private WebElement btnSubmitAdd;
 	
 	//validator
@@ -63,14 +69,22 @@ public class JCAdminBlogPage  extends JCAdminLoginPage
 		this.btnBlog.click();
 		this.btnTambah.click();
 	}
-	public void tambahBlogBaru(String kode,String pub) {
+	public void tambahBlogBaru(String kode,String pub,String toHome) {
+	    uploadGambar(gambar1);
+	    System.out.println("publish adalah "+pub+" dan to home adala "+toHome);
 		this.judulBlog.click();
 		clearField();
-		this.judulBlog.sendKeys("Ini pertama dari cucumber");
+		this.judulBlog.sendKeys("Ini judul pada "+jamMenit);
+		editPublish(pub);
+		editOptSettop(toHome);
 		this.fieldBodyPreview.click();
 		clearField();
-		Utils.fullScroll();
-		this.fieldBodyPreview.sendKeys("ini adalah isi konten body untuk body preview");
+		this.fieldBodyPreview.sendKeys("ini adalah isi konten body untuk body preview "+jamMenit);
+		Utils.scrollFullMouse(100);
+		this.contentBlog.click();
+		clearField();
+		isiFieldBody("ini adalah isi content boyd untuk artikel blog pada jam "+jamMenit);
+		Utils.fullScroll();	
 	}
 	public void klikSimpan() {
 		this.btnSubmitAdd.click();
@@ -130,7 +144,7 @@ public class JCAdminBlogPage  extends JCAdminLoginPage
 			StringSelection strlok = new StringSelection(lokasiFile);
 			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strlok, null);
 			Robot rbtclr = new Robot();
-			rbtclr.mouseMove(500, 375);
+			rbtclr.mouseMove(463, 463);
 			Utils.delay(1, strDelay);
 			rbtclr.mousePress(InputEvent.BUTTON1_DOWN_MASK);
 			rbtclr.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
@@ -183,4 +197,21 @@ public class JCAdminBlogPage  extends JCAdminLoginPage
 		}
 		
 	}
+	public String getTxtAddVld(int delays) {
+        return new WebDriverWait(driver, Duration.ofSeconds(15))
+                .until(ExpectedConditions.visibilityOf(validatorAdd)).getText();
+    }
+    public void goToBlog() {
+        this.btnBlog.click();      
+    }
+    public void clickBlogPertama() {
+        this.blogPertama.click();
+    }
+    public void editJudul() {
+        this.judulBlog.click();
+        clearField();
+        Utils.delay(1, strDelay);
+        this.judulBlog.sendKeys("judul hasil edit");
+        this.btnSubmitAdd.click();   
+    }
 }

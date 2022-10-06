@@ -17,13 +17,13 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class JCAdminTambahBenefitImpl {
+public class JCAdminBenefitTambahImpl {
 	private static WebDriver driver;
 	private static ExtentTest extentTest;
 	private JCAdminBenefitPage JCBenefit; 
 	String strDelay = Constants.GLOB_PARAM_DELAY;
 	
-	public JCAdminTambahBenefitImpl() {
+	public JCAdminBenefitTambahImpl() {
 		driver = JCAdminHooks.driver;
 		extentTest = JCAdminHooks.extentTest;
 		driver.get(Constants.URL_JCADMIN_LOGIN);

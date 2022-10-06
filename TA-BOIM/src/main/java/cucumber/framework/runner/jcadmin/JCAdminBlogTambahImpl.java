@@ -15,16 +15,16 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class JCAdminTambahBlogImpl {
+public class JCAdminBlogTambahImpl {
 	private static WebDriver driver;
 	private static ExtentTest extentTest;
 	private JCAdminBlogPage jcBlog; 
 	String strDelay = Constants.GLOB_PARAM_DELAY;
 	
-	public JCAdminTambahBlogImpl() {
+	public JCAdminBlogTambahImpl() {
 		driver = JCAdminHooks.driver;
 		extentTest = JCAdminHooks.extentTest;
-		driver.get(Constants.URL_JCADMIN_BLOG);
+		driver.get(Constants.URL_JCADMIN_LOGIN);
 		jcBlog = new JCAdminBlogPage();
 	}
 	
@@ -33,20 +33,19 @@ public class JCAdminTambahBlogImpl {
 	    jcBlog.klikTambahBlog();
 	}
 
-	@Given("^(.*) Admin mengisi form tambah blog baru dengan publish (.*)$")
-	public void k123_admin_mengisi_form_tambah_dengan_publish_activeblogbaru(String kode, String pub) {
-	    jcBlog.tambahBlogBaru(kode,pub);
+	@Given("^(.*) Admin mengisi form tambah blog baru dengan publish (.*) dan to home (.*)$")
+	public void k123_admin_mengisi_form_tambah_dengan_publish_activeblogbaru(String kode, String pub, String toHome) {
+	    jcBlog.tambahBlogBaru(kode,pub,toHome);
 	}
 
 	@Given("^(.*) Admin menekan tombol simpan tambah blog baru$")
 	public void k123_admin_menekan_tombol_simpan_tambahblogbaru(String kode) {
 	    jcBlog.klikSimpan();
-	    
 	}
 
 	@Then("^(.*) Admin menambah blog baru active valid$")
 	public void k123_admin_menambah_rincian_biaya_active_validblogbaru(String kode) {
-		System.out.println("blog disimpan");
+		assertTrue(jcBlog.getTxtAddVld(10).contains("berhasil"));
 	}
 
 

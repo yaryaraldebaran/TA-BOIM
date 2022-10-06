@@ -14,13 +14,13 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class JCEditRincianBiayaImpl {
+public class JCRincianBiayaEditImpl {
 	private static WebDriver driver;
 	private static ExtentTest extentTest;
 	private JCAdminRincianBiayaPage JCAdminRB; 
 	String strDelay = Constants.GLOB_PARAM_DELAY;
 	
-	public JCEditRincianBiayaImpl() {
+	public JCRincianBiayaEditImpl() {
 		driver = JCAdminHooks.driver;
 		extentTest = JCAdminHooks.extentTest;
 		driver.get(Constants.URL_JCADMIN_LOGIN);
