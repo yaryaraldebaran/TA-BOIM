@@ -2,6 +2,7 @@ package cucumber.framework.utils;
 
 import java.awt.AWTException;
 import java.awt.Robot;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
@@ -138,5 +139,28 @@ public class Utils {
 		return boStat;
 		
 	}
-
+	public static void zoomOut(int nilai) {
+		try {
+			Robot rob = new Robot();
+			for (int i = 0; i < nilai; i++) {
+				rob.keyPress(KeyEvent.VK_CONTROL);
+				rob.keyPress(KeyEvent.VK_SUBTRACT);
+				rob.keyRelease(KeyEvent.VK_SUBTRACT);
+				rob.keyRelease(KeyEvent.VK_CONTROL);
+			}
+		} catch (Exception e) {
+			System.out.println("ERROR : zoomOut method");
+		}
+	}
+	public static void clickCoord(int x, int y) {
+		try {
+			Robot rbt = new Robot();
+			rbt.mouseMove(x, y);
+			rbt.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+			rbt.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+		} catch (AWTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

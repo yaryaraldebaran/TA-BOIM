@@ -10,7 +10,7 @@ Feature: Rincian Biaya
 When RI019P Admin memilih opsi harga normal
 Then RI019P Admin melihat hasil search cari harga normal
   
-    Scenario: Mencari search rincian biaya berdasarkan diskon
+ Scenario: Mencari search rincian biaya berdasarkan diskon
   When RI020P Admin memilih opsi diskon
   Then RI020P Admin melihat hasil search cari diskon
   

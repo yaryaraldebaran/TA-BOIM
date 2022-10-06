@@ -1,7 +1,11 @@
 package cucumber.framework.page.jcadmin;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.InputEvent;
 import java.time.Duration;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,19 +18,21 @@ import cucumber.framework.connection.DriverSingleton;
 import cucumber.framework.constant.Constants;
 import cucumber.framework.utils.Utils;
 
-public class JCAdminBenefitPage extends JCAdminLoginPage {
+public class JCAdminBenefitPage extends JCAdminLoginPage 
+{
 	
 	private WebDriver driver;
 	private String strDelay = Constants.GLOB_PARAM_DELAY;
-
+	JavascriptExecutor js;
 	public JCAdminBenefitPage() {
 		this.driver = DriverSingleton.getDriver();
 		PageFactory.initElements(driver, this);
+		js = (JavascriptExecutor) driver; 
 		super.LoginPage("ucen1315@gmail.com", "a");
 	}
-	@FindBy(xpath ="/html[1]/body[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[10]/a[1]/i[1]")
+	@FindBy(xpath ="//tbody/tr[1]/td[10]/a[1]/i[1]")
 	private WebElement btnBenefitPertama;
-	@FindBy(xpath ="//a[normalize-space()='Benefit']")
+	@FindBy(xpath ="/html[1]/body[1]/div[2]/div[2]/div[1]/div[1]/nav[1]/div[2]/ul[1]/div[1]/div[2]/div[1]/div[1]/div[1]/li[4]/ul[1]/li[3]/a[1]")
 	private WebElement btnBenefit;
 	@FindBy(linkText = "Home")
 	private WebElement btnHome;
@@ -52,7 +58,7 @@ public class JCAdminBenefitPage extends JCAdminLoginPage {
 	private WebElement optPublish;
 	@FindBy(xpath = "//input[@name='mysubmit']")
 	private WebElement submitBenefit;
-	@FindBy(xpath ="/html[1]/body[1]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/form[1]/div[3]/input[1]")
+	@FindBy(xpath ="//input[@name='mysubmit']")
 	private WebElement submitEditBenefit;
 	//FIELD TAMBAH BENEFIT
 	
@@ -79,15 +85,62 @@ public class JCAdminBenefitPage extends JCAdminLoginPage {
 		Utils.fullScroll();
 	}
 	public void klikSimpanBenefit() {
+		Utils.fullScroll();
 		this.submitBenefit.click();
 	}
 	public void klikBenefitPertama() {
-		this.btnBenefitPertama.click();
+		System.out.println("ini dari klik data pertama");
+//		this.btnBenefitPertama.click();
+//		js.executeScript("document.getElementByXpath('/html[1]/body[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[10]/a[1]/i[1]').click();");
+		try {
+			Robot rbt = new Robot();
+			rbt.mouseMove(1473, 430);
+			rbt.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+			rbt.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+		} catch (AWTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-	public void editJudul1BenefitPertama() {
+	public void editJudul(String jud, String isiJud) {
+		if (jud.equals("judul1")) {
+			System.out.println("isi judul adalah "+isiJud);
+		}else if (jud.equals("judul2")) {
+			
+		}else if (jud.equals("judul3")) {
+			System.out.println("isi judul adalah "+isiJud);
+		}else if (jud.equals("judul4")) {
+			
+		}
+	}
+	public void editJudul1BenefitPertama(String isJud) {
 		this.judul1.click();
 		Utils.clearField();
-		this.judul1.sendKeys("Judul 1 revisi");
+		Utils.delay(2, strDelay);
+		this.judul1.sendKeys(isJud);
+		Utils.delay(2, strDelay);
+	}
+	public void editJudul2BenefitPertama(String isJud) {
+		Utils.zoomOut(4);
+		this.judul2.click();
+		Utils.clearField();
+		Utils.delay(2, strDelay);
+		this.judul2.sendKeys(isJud);
+		Utils.delay(2, strDelay);
+	}
+	public void editJudul3BenefitPertama(String isJud) {
+		this.judul3.click();
+		Utils.clearField();
+		Utils.delay(2, strDelay);
+		this.judul3.sendKeys(isJud);
+		Utils.delay(2, strDelay);
+	}
+	public void editJudul4BenefitPertama(String isJud) {
+		this.judul4.click();
+		Utils.clearField();
+		Utils.delay(2, strDelay);
+		this.judul4.sendKeys(isJud);
+		Utils.delay(2, strDelay);
 	}
 	public void editDeskripsi1BenefitPertama() {
 		this.deskripsi1.click();

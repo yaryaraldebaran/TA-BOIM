@@ -5,7 +5,9 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
 features = {
-		"src/main/resources/jcadmin/005Blog001MenambahBlog.feature"},
+		"src/main/resources/jcadmin/005Blog001MenambahBlog.feature",
+//		"src/main/resources/jcadmin/003RincianBiaya002MengeditRB.feature",
+		},
 glue = "cucumber.framework.runner.jcadmin",
 monochrome=true,
 plugin = {"pretty","html:target/jcadmin/htmlreport/LoginRunner.html",

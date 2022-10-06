@@ -15,6 +15,7 @@ public class Constants {
 	public static final String GLOB_PARAM_DELAY = "y";
 	
 	// PAGE JC ADMIN
+	public static final String URL_JCADMIN_BENEFIT="https://dev.ptdika.com/web_jc_v2/admin/benefit/data-benefit";
 	public static final String URL_JCADMIN_LOGIN="https://dev.ptdika.com/web_jc_v2/admin/login";
 	public static final String URL_JCADMIN_BLOG ="https://dev.ptdika.com/web_jc_v2/admin/blogs";
 }

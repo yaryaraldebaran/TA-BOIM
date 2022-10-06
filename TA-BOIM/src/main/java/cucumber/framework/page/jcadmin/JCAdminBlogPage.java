@@ -24,143 +24,70 @@ import cucumber.framework.connection.DriverSingleton;
 import cucumber.framework.constant.Constants;
 import cucumber.framework.utils.Utils;
 
-public class JCAdminBlogPage  extends JCAdminLoginPage{
+public class JCAdminBlogPage  extends JCAdminLoginPage
+{
 	private WebDriver driver;
 	private String strDelay = Constants.GLOB_PARAM_DELAY;
-	public String gambar1 = "src\\main\\resources\\gambarboim\\catit.png";
+	
 	public JCAdminBlogPage() {
 		this.driver = DriverSingleton.getDriver();
 		PageFactory.initElements(driver, this);
 		super.LoginPage("ucen1315@gmail.com", "a");
+		
 	}
-	@FindBy(linkText = "Home")
-	private WebElement btnHome;
-	@FindBy (xpath = "//li[6]//a[1]")
+	@FindBy(linkText = "Blog")
 	private WebElement btnBlog;
 	@FindBy (linkText = "Tambah")
-	private WebElement btnTambahBlog;
-	@FindBy(xpath= "/html[1]/body[1]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/form[1]/div[2]/div[1]/div[1]/div[1]/input[1]")
-	private WebElement uploadXpathAbs;
-	@FindBy(xpath="//input[@name='uploadedFile']")
-	private WebElement uploadXpathRef;
+	private WebElement btnTambah;
 	@FindBy(name="uploadedFile")
-	private WebElement uploadXpathRef2;
-	@FindBy(xpath ="//figure[1]//a[1]//img[1]")
-	private WebElement blogPertama;
+	private WebElement uploadField;
 	
-	@FindBy(id = "judul")
+	
+	//FIELD TAMBAH BLOG
+	@FindBy(id ="judul")
 	private WebElement judulBlog;
-	
-	@FindBy(id = "exampleFormControlSelect9")
+	@FindBy(id ="exampleFormControlSelect9")
 	private WebElement optPublish;
-	public String getOptPub() {
-		//"Data berhasil di tambah"
-		return new WebDriverWait(driver, Duration.ofSeconds(15))
-				.until(ExpectedConditions.visibilityOf(optPublish)).getText();
-	}
-	@FindBy(name = "set_top")
-	private WebElement optSetTop;
-	public String getOptSettop() {
-		//"Data berhasil di tambah"
-		return new WebDriverWait(driver, Duration.ofSeconds(15))
-				.until(ExpectedConditions.visibilityOf(optSetTop)).getText();
-	}
+	@FindBy(id ="set_top")
+	private WebElement optSetHome;
+	@FindBy(name ="body_preview")
+	private WebElement fieldBodyPreview;
+	@FindBy(name ="mySubmit")
+	private WebElement btnSubmitAdd;
 	
-	@FindBy(xpath ="/html[1]/body[1]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/form[1]/div[2]/div[1]/div[5]/div[1]/textarea[1]")
-	private WebElement bodyPreview;
-	@FindBy(xpath = "/html[1]/body[1]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/form[1]/div[2]/div[1]/div[6]/div[1]/div[1]/div[3]/div[1]")
-	private WebElement fieldBody;
-	@FindBy(xpath="//input[@name='mysubmit']")
-	private WebElement btnEditSubmit;
-	@FindBy(xpath = "//alert[@class='alert alert-success']")
-	private WebElement alertSuccessTambah;
-	public String getTxtSuccess() {
-		//"Data berhasil di tambah"
-		return new WebDriverWait(driver, Duration.ofSeconds(15))
-				.until(ExpectedConditions.visibilityOf(alertSuccessTambah)).getText();
-	}
-	
-	public void tambahBlogBaru() {
-		String waktu = ""+LocalDateTime.now().getHour()+":"+LocalDateTime.now().getMinute();
+	//validator
+	@FindBy(xpath="//form[@id='frmregister']/alert")
+	private WebElement validatorAdd;
+
+	public void klikTambahBlog() {
 		this.btnBlog.click();
-		this.btnTambahBlog.click();
-		File newFile = new File(gambar1);
-		uploadGambar(newFile);
-		this.judulBlog.sendKeys("Judul blog dari cucumber "+waktu);
-		this.bodyPreview.sendKeys("body preview dari cucumber "+waktu);
-		zoomOut();
-		Utils.delay(3, strDelay);
-		this.fieldBody.click();
-		Utils.delay(2, strDelay);
-		isiFieldBody("ini adalah tulisan pertama blog juaracoding dari cucumber "+waktu);
-		System.out.println("ini tambah baru");
+		this.btnTambah.click();
 	}
-	public void goToBlog() {
-		this.btnHome.click();
-		this.btnBlog.click();
-	}
-	public void tekanTambahBlog() {
-		this.btnTambahBlog.click();
-	}
-	
-	/*
-	 * EDIT JUDUL BLOG
-	 */
-	public void clickPertama() {
-		this.blogPertama.click();
-	}
-	public void editJudul() {
+	public void tambahBlogBaru(String kode,String pub) {
 		this.judulBlog.click();
-		Utils.clearField();
-		Utils.delay(3, strDelay);
-		this.judulBlog.sendKeys("ini adalah judul blog pertama cucumber");
+		clearField();
+		this.judulBlog.sendKeys("Ini pertama dari cucumber");
+		this.fieldBodyPreview.click();
+		clearField();
+		Utils.fullScroll();
+		this.fieldBodyPreview.sendKeys("ini adalah isi konten body untuk body preview");
 	}
-	public void klikSimpanEditJudul() {
-		this.btnEditSubmit.click();
+	public void klikSimpan() {
+		this.btnSubmitAdd.click();
 	}
 	
-	/*
-	 * EDIT BODY PREVIEW
-	 */
-	public void editBodyPreview() {
-		Utils.setengahScroll("400");
-		this.bodyPreview.click();
-		Utils.delay(3, strDelay);
-		clearField();
-		Utils.delay(1, strDelay);
-		this.bodyPreview.sendKeys("ini adalah body preview blog pertama cucumer");
-		Utils.delay(3, strDelay);
-	}
-	public void klikSimpanEditBody() {
-		Utils.scrollFullMouse(200);
-		this.btnEditSubmit.click();
-		Utils.delay(2, strDelay);
-	}
-	public void klikSimpanBlog() {
-//		Utils.fullScroll();
-		Utils.scrollFullMouse(8);
-		this.btnEditSubmit.click();
-		Utils.delay(2, strDelay);
-	}
-	/*
-	 * EDIT PUBLISH 
-	 */
 	public void editPublish(String setPub) {
-		zoomOut();
 		Utils.delay(4, strDelay);
 		Select selPublish = new Select(this.optPublish);
 		Utils.delay(3, strDelay);
-		selPublish.selectByValue("1");
-//		if(setPub.equalsIgnoreCase("Active")) {
-//			selPublish.selectByVisibleText("No Active");
-//		}else {
-//			selPublish.selectByVisibleText("Active");
-//		}
-		
-		
+		if (setPub.contains("no")){
+			selPublish.selectByValue("0");
+		}else {
+			selPublish.selectByValue("1");
+		}
 	}
 	public void editOptSettop(String setTopStat) {
-		Select selSettop = new Select(this.optSetTop);
+		Select selSettop = new Select(this.optSetHome);
 		Utils.delay(2, strDelay);
 		if (setTopStat.equalsIgnoreCase("Yes")) {
 			selSettop.selectByVisibleText("No");
@@ -203,7 +130,7 @@ public class JCAdminBlogPage  extends JCAdminLoginPage{
 			StringSelection strlok = new StringSelection(lokasiFile);
 			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strlok, null);
 			Robot rbtclr = new Robot();
-			rbtclr.mouseMove(420, 492);
+			rbtclr.mouseMove(500, 375);
 			Utils.delay(1, strDelay);
 			rbtclr.mousePress(InputEvent.BUTTON1_DOWN_MASK);
 			rbtclr.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
@@ -220,15 +147,14 @@ public class JCAdminBlogPage  extends JCAdminLoginPage{
 			rbtclr.keyRelease(KeyEvent.VK_ENTER);
 			
 		} catch (AWTException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("error upload file");
 		}
 	}
-	public static void zoomOut() {
+	public static void zoomOut(int x) {
 		Robot rbt;
 		try {
 			rbt = new Robot();
-			for (int i = 0; i < 5; i++) {
+			for (int i = 0; i < x; i++) {
 				rbt.keyPress(KeyEvent.VK_CONTROL);
 				rbt.keyPress(KeyEvent.VK_SUBTRACT);
 				rbt.keyRelease(KeyEvent.VK_SUBTRACT);
