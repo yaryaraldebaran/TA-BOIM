@@ -158,6 +158,7 @@ public class Utils {
 			rbt.mouseMove(x, y);
 			rbt.mousePress(InputEvent.BUTTON1_DOWN_MASK);
 			rbt.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+			delay(1, "y");
 		} catch (AWTException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

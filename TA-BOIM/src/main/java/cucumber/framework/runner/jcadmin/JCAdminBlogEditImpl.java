@@ -37,65 +37,37 @@ public class JCAdminBlogEditImpl {
 	}
 	@When("Admin menekan tombol edit blog pertama")
 	public void admin_menekan_tombol_edit_blog_pertama() {
-		Utils.delay(3, strDelay);
+		Utils.delay(2, strDelay);
 	    JCAdminBlog.clickBlogPertama();
 	}
 	//AKHIR BACKGROUND
-
-	@When("Admin edit judul blog")
-	public void admin_edit_judul_blog() {
-	    JCAdminBlog.editJudul();
+	@When("^(.*) Admin edit (.*) menjadi (.*), (.*), (.*), (.*), blog$")
+	public void editBlog(String kode,String nama, String publish,
+	        String setHome, String conPrev, String content) {
+//	    System.out.println(publish.isEmpty());
+	    System.out.println("publish blank? "+publish.isBlank()+" dengan "+publish);
+	    System.out.println("opt Home blank? "+setHome.isBlank()+" dengan "+setHome);
+	    System.out.println("conprev blank? "+conPrev.isBlank()+" dengan "+conPrev);
+	    
+	    if(!publish.isBlank()) {
+	        JCAdminBlog.editPublish(publish);
+	    }else if (!setHome.isBlank()) {
+	        JCAdminBlog.editOptSettop(setHome);
+	    }else if (!conPrev.isBlank()) {
+	        JCAdminBlog.editConPrev(conPrev);
+	    }else if(!content.isBlank()) {
+	        JCAdminBlog.editContent(content);
+	    }
+	    Utils.delay(3, strDelay);
 	}
-
-	@When("Admin klik simpan edit judul blog baru")
-	public void admin_klik_simpan_edit_judul_blog_baru() {
+	@When("^(.*) Admin klik simpan edit pada blog$")
+	public void adminKlikSimpanEdit(String kode) {
+	    Utils.delay(2, strDelay);
 	    JCAdminBlog.klikSimpan();
+	    Utils.delay(5, strDelay);
 	}
-
-	@Then("admin mengedit judul blog baru")
-	public void admin_mengedit_judul_blog_baru() {
-	    System.out.println("ini then edit judul");
-	}
-	//AKHIR EDIT JUDUL
-	
-	
-	/*******************
-	 * EDIT BODY PREVIEW
-	 * *****************
-	 */
-	@When("Admin edit body preview blog")
-	public void admin_edit_body_preview_blog() {
-		System.out.println("ini dari edit body");
-//	    JCAdminBlog.editBodyPreview();
-	}
-
-	@And("Admin klik simpan edit body preview blog baru")
-	public void admin_klik_simpan_edit_body_preview_blog_baru() {
-//		Utils.fullScroll();
-//	    JCAdminBlog.klikSimpanEditBody();
-	}
-
-	@Then("admin telah mengedit body preview blog baru")
-	public void admin_telah_mengedit_body_preview_blog_baru() {
-	    System.out.println("ini dari then edit body preview");
-	}
-
-	/*
-	 * EDIT PUBLISH BLOG
-	 */
-	@When("Admin edit PUBLISHOPT artikel blog")
-	public void admin_edit_publishopt_artikel_blog() {
-//		System.out.println(JCAdminBlog.getOptPub());
-//	    JCAdminBlog.editPublish(JCAdminBlog.getOptPub());
-	}
-
-	@When("Admin klik simpan edit publishopt blog pertama")
-	public void admin_klik_simpan_edit_publishopt_blog_pertama() {
-//		JCAdminBlog.klikSimpanEditBody();
-	}
-
-	@Then("admin telah mengedit publishopt pada artikel blog baru")
-	public void admin_telah_mengedit_publishopt_artikel_blog_baru() {
-	    System.out.println("test then");
+	@Then("^(.*) Admin telah mengedit$")
+	public void admin_telah_mengedit(String kode) {
+	    System.out.println("admin telah mengedit");
 	}
 }

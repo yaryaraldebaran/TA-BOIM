@@ -2,23 +2,16 @@ Feature: Blog
 Background: Background login
 	Given Admin login dan masuk ke halaman blog untuk mengedit
   When Admin menekan tombol edit blog pertama
-#		
- Scenario: Mengedit judul blog
-  When Admin edit judul blog
-  And Admin klik simpan edit judul blog baru 
-  Then admin mengedit judul blog baru
   
-   #Scenario: Mengedit body preview blog
-  #When Admin edit body preview blog
-  #And Admin klik simpan edit body preview blog baru 
-  #Then admin telah mengedit body preview blog baru
-  
-     #Scenario: Mengedit foto artikel blog
-  #When Admin edit foto artikel blog
-  #And Admin klik simpan edit foto artikel blog pertama 
-  #Then admin telah mengedit foto artikel blog baru
-  
-   #Scenario: Mengedit PUBLISH artikel blog
-  #When Admin edit PUBLISHOPT artikel blog
-  #And Admin klik simpan edit publishopt blog pertama 
-  #Then admin telah mengedit publishopt pada artikel blog baru
+  Scenario Outline: Mengedit <nama> blog
+  When <kode> Admin edit <nama> menjadi <publish>, <set to home>, <content preview>, <content>, blog
+  And <kode> Admin klik simpan edit pada blog
+  Then <kode> Admin telah mengedit
+  Examples:
+  |kode|nama|publish|set to home|content preview|content|
+  |BL007P|publish|Active||||
+  |BL009P|publish|No Active||||
+  |BL010|set to home||Yes|||
+  |BL011|set to home||No|||
+  |BL012|content preview|||ini content prev||
+  |BL013|content||||isi content artikel untuk blog|

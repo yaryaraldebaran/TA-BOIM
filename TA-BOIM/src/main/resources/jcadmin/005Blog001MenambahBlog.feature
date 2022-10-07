@@ -8,7 +8,7 @@ Feature: Blog
     
    Examples:
    	|kode test case|publish|home|
-   	|B001|active|yes|
-   	|B002|no active|yes|
-   	|B001|active|no|
-   	|B002|no active|no|
+   	|BL002|active|yes|
+   	|BL003|no active|yes|
+   	|BL004|active|no|
+   	|BL005|no active|no|

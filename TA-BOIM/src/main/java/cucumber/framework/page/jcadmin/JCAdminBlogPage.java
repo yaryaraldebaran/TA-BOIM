@@ -12,6 +12,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.KeyInput;
@@ -50,11 +51,11 @@ public class JCAdminBlogPage  extends JCAdminLoginPage
 	//FIELD TAMBAH BLOG
 	@FindBy(id ="judul")
 	private WebElement judulBlog;
-	@FindBy(id ="exampleFormControlSelect9")
+	@FindBy(xpath ="//div[3]//div[1]//select[1]")
 	private WebElement optPublish;
-	@FindBy(id ="set_top")
+	@FindBy(xpath ="/html[1]/body[1]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/form[1]/div[2]/div[1]/div[4]/div[1]/select[1]")
 	private WebElement optSetHome;
-	@FindBy(name ="body_preview")
+	@FindBy(xpath ="/html[1]/body[1]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/form[1]/div[2]/div[1]/div[5]/div[1]/textarea[1]")
 	private WebElement fieldBodyPreview;
 	@FindBy(xpath ="/html[1]/body[1]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/form[1]/div[2]/div[1]/div[6]/div[1]/div[1]/div[3]/div[3]")
 	private WebElement contentBlog;
@@ -75,6 +76,7 @@ public class JCAdminBlogPage  extends JCAdminLoginPage
 		this.judulBlog.click();
 		clearField();
 		this.judulBlog.sendKeys("Ini judul pada "+jamMenit);
+		Utils.scrollFullMouse(100);
 		editPublish(pub);
 		editOptSettop(toHome);
 		this.fieldBodyPreview.click();
@@ -91,28 +93,66 @@ public class JCAdminBlogPage  extends JCAdminLoginPage
 	}
 	
 	public void editPublish(String setPub) {
-		Utils.delay(4, strDelay);
-		Select selPublish = new Select(this.optPublish);
-		Utils.delay(3, strDelay);
-		if (setPub.contains("no")){
-			selPublish.selectByValue("0");
-		}else {
-			selPublish.selectByValue("1");
-		}
+//	    Utils.setengahScroll("250");
+	    JavascriptExecutor js = (JavascriptExecutor) driver;
+	    Select selPublish = new Select(this.optPublish);
+        Utils.delay(1, strDelay);
+        String stat = "";
+        if (setPub.contains("No")) {
+            stat="1";
+        }else {
+            stat="0";
+        }
+        
+        js.executeScript("window.scrollBy(0,500)", "");
+        System.out.println(stat);
+        selPublish.selectByValue(stat);
+        Utils.delay(2, strDelay);
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 	}
 	public void editOptSettop(String setTopStat) {
+	       JavascriptExecutor js = (JavascriptExecutor) driver;
 		Select selSettop = new Select(this.optSetHome);
+		Utils.setengahScroll("400");
 		Utils.delay(2, strDelay);
-		if (setTopStat.equalsIgnoreCase("Yes")) {
-			selSettop.selectByVisibleText("No");
+		String optSetHome="";
+		if (setTopStat.equalsIgnoreCase("yes")) {
+			optSetHome="Yes";
 		}else {
-			selSettop.selectByVisibleText("Yes");
+		    optSetHome="No";
 		}
-		
+        js.executeScript("window.scrollBy(0,500)", "");
+		Utils.delay(2, strDelay);
+        selSettop.selectByVisibleText(optSetHome);
+        Utils.delay(2, strDelay);
+        Utils.delay(1, strDelay);
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+	}
+	
+	public void editConPrev(String conPrev) {
+	    JavascriptExecutor js = (JavascriptExecutor) driver;
+	    js.executeScript("window.scrollBy(0,500)", "");
+	    this.fieldBodyPreview.click();
+	    Utils.delay(1, strDelay);
+        clearField();
+        Utils.delay(1, strDelay);
+        this.fieldBodyPreview.sendKeys(conPrev+jamMenit);    
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+    }
+	public void editContent(String content) {
+	    JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,500)", "");
+	    Utils.delay(2, strDelay);
+        this.contentBlog.click();
+        clearField();
+        Utils.delay(2, strDelay);
+        isiFieldBody(content+jamMenit);
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 	}
 	//UTILITAS
 	public void clearField() {
 		try {
+		    System.out.println("ini dari robot clearfield");
 			Robot rbtclr = new Robot();
 			rbtclr.keyPress(KeyEvent.VK_CONTROL);
 			rbtclr.keyPress(KeyEvent.VK_A);
@@ -205,7 +245,18 @@ public class JCAdminBlogPage  extends JCAdminLoginPage
         this.btnBlog.click();      
     }
     public void clickBlogPertama() {
-        this.blogPertama.click();
+//        this.blogPertama.click();
+//        JavascriptExecutor js = (JavascriptExecutor) driver; 
+//        js.executeScript("document.querySelector('img[alt='Image description'][src='https://dev.ptdika.com/web_jc_v2/public/upload/blog/blog_1952201665044331_44813e4a528ef041c1d2.png']).click();");
+        try {
+            Robot rbt = new Robot();
+            rbt.mouseMove(464,580);
+            rbt.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            rbt.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        } catch (AWTException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
     public void editJudul() {
         this.judulBlog.click();
@@ -214,4 +265,5 @@ public class JCAdminBlogPage  extends JCAdminLoginPage
         this.judulBlog.sendKeys("judul hasil edit");
         this.btnSubmitAdd.click();   
     }
+    
 }
